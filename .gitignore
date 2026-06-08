@@ -1,0 +1,17 @@
+# Next.js build output — excluded from sync to prevent file lock conflicts
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# Misc
+.env*
+*.log
+
+# Django content admin
+backend/.venv/
+backend/media/
+backend/db.sqlite3
+__pycache__/
+*.pyc
