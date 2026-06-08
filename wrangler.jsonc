@@ -1,0 +1,9 @@
+{
+  // Serve the WBC site as a static asset deployment on Cloudflare Workers.
+  // `npm run build` produces ./out (Next.js static export); Wrangler uploads it.
+  "name": "wbc-carnival",
+  "compatibility_date": "2025-06-01",
+  "assets": {
+    "directory": "./out"
+  }
+}
