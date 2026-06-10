@@ -46,11 +46,9 @@ export default function FounderVideosPage() {
       <section className="bg-white py-14 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="mb-10">
-            <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-2">
-              More Videos
-            </p>
+           
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900">
-              All Founder Talks
+              Founder Talks and Business Stories
             </h2>
           </div>
 

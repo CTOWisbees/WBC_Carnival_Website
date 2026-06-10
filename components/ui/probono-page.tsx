@@ -3,6 +3,7 @@
 import Navbar from '@/components/ui/navbar';
 import FooterNewsletter from '@/components/ui/footer-column';
 import HomeBackground from '@/components/ui/background-components';
+import Image from 'next/image';
 
 export default function ProBonoPage() {
   return (
@@ -58,6 +59,18 @@ export default function ProBonoPage() {
             <p className="text-white text-base sm:text-lg font-semibold leading-relaxed">
               Will you help us create that opportunity for them?
             </p>
+          </div>
+
+          {/* Photo */}
+          <div className="relative w-full rounded-2xl overflow-hidden mb-14 border border-white/10">
+            <Image
+              src="/Picture1.png"
+              alt="Pro bono WBC event — children participating"
+              width={1200}
+              height={700}
+              className="w-full h-auto object-cover"
+              priority
+            />
           </div>
 
           {/* CTA block */}

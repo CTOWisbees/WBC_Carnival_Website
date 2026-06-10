@@ -8,9 +8,7 @@
       "PowerShell(cmd /c rmdir \"c:\\\\Users\\\\Ashley\\\\OneDrive\\\\Desktop\\\\WBC Website\\\\.next\")",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\KIIT0001\\\\Downloads\\\\WBC Website\\\\WBC Website\" -Recurse -Directory)",
       "Bash(Select-Object FullName)",
-      "Bash(Sort-Object FullName)",
-      "Bash(git init *)",
-      "Bash(git add *)"
+      "Bash(Sort-Object FullName)"
     ]
   }
 }

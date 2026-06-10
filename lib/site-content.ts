@@ -36,10 +36,19 @@ export interface VideoEntry {
   subtitle: string;
 }
 
+export interface SponsorshipTierEntry {
+  name: string;
+  tagline: string;
+  badge: string;
+  accent: string;
+  features: string[];
+}
+
 export interface SiteContent {
   site: SiteInfo;
   partners: PartnerLogoItem[];
   gallery: GalleryItem[];
+  sponsorshipTiers: SponsorshipTierEntry[];
   testimonials: {
     homeColumn: TestimonialEntry[];
     parent: TestimonialEntry[];

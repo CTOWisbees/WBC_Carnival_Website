@@ -124,6 +124,42 @@ class Testimonial(models.Model):
         return f"{self.get_category_display()} — {self.name}"
 
 
+class SponsorshipTier(models.Model):
+    """Sponsorship tiers shown on the Sponsors page (Silver, Gold, Platinum, …)."""
+
+    name = models.CharField(max_length=80, help_text="e.g. Silver, Gold, Platinum.")
+    tagline = models.CharField(max_length=200, blank=True, help_text="One-line description under the tier name.")
+    badge = models.CharField(max_length=80, blank=True, help_text="Badge label, e.g. 'Most Popular'.")
+    accent = models.CharField(
+        max_length=20, default="#ffffff",
+        help_text="Accent hex colour, e.g. #f5a623. Controls card border, icons, and button colour.",
+    )
+    order = models.PositiveIntegerField(default=0, help_text="Lower numbers appear first.")
+    is_active = models.BooleanField(default=True, help_text="Untick to hide without deleting.")
+
+    class Meta:
+        ordering = ["order", "id"]
+        verbose_name = "Sponsorship Tier"
+
+    def __str__(self):
+        return self.name
+
+
+class SponsorshipTierFeature(models.Model):
+    """Individual benefit lines inside a sponsorship tier."""
+
+    tier = models.ForeignKey(SponsorshipTier, on_delete=models.CASCADE, related_name="features")
+    text = models.CharField(max_length=300, help_text="One benefit / feature line.")
+    order = models.PositiveIntegerField(default=0, help_text="Lower numbers appear first.")
+
+    class Meta:
+        ordering = ["order", "id"]
+        verbose_name = "Feature"
+
+    def __str__(self):
+        return f"{self.tier.name}: {self.text[:60]}"
+
+
 class Video(models.Model):
     """YouTube videos embedded across the site."""
 

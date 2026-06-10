@@ -3,8 +3,17 @@
 import Navbar from '@/components/ui/navbar';
 import FooterNewsletter from '@/components/ui/footer-column';
 import HomeBackground from '@/components/ui/background-components';
+import { useSiteContent } from '@/components/site-content-provider';
 
-const tiers = [
+function hexToRgba(hex: string, alpha: number) {
+  const h = hex.replace('#', '');
+  const r = parseInt(h.substring(0, 2), 16);
+  const g = parseInt(h.substring(2, 4), 16);
+  const b = parseInt(h.substring(4, 6), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+const defaultTiers = [
   {
     name: 'Silver',
     tagline: 'Economical exposure with real reach',
@@ -64,6 +73,17 @@ const tiers = [
   },
 ];
 
+type TierDisplay = {
+  name: string;
+  tagline: string;
+  badge: string;
+  accent: string;
+  accentMuted: string;
+  accentBorder: string;
+  accentGlow: string;
+  features: string[];
+};
+
 function CheckIcon({ color }: { color: string }) {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
@@ -74,6 +94,21 @@ function CheckIcon({ color }: { color: string }) {
 }
 
 export default function SponsorsPage() {
+  const content = useSiteContent();
+
+  const tiers: TierDisplay[] = content?.sponsorshipTiers?.length
+    ? content.sponsorshipTiers.map((t) => ({
+        name: t.name,
+        tagline: t.tagline,
+        badge: t.badge,
+        accent: t.accent,
+        accentMuted: hexToRgba(t.accent, 0.10),
+        accentBorder: hexToRgba(t.accent, 0.30),
+        accentGlow: `0 0 48px 0 ${hexToRgba(t.accent, 0.12)}`,
+        features: t.features,
+      }))
+    : defaultTiers;
+
   return (
     <main className="relative overflow-x-hidden">
       <Navbar />

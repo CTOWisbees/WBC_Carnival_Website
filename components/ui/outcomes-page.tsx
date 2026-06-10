@@ -7,16 +7,14 @@ import FooterNewsletter from '@/components/ui/footer-column';
 import HomeBackground from '@/components/ui/background-components';
 import {
   Brain, TrendingUp, Users, Mic2, Trophy, Network,
-  Building2, Star, BookOpen, Megaphone, Handshake, BarChart3,
-  Globe, Lightbulb, GraduationCap, Sprout, Factory, Flag,
+  Building2, Megaphone, Handshake, Sprout, Factory, Flag,
 } from 'lucide-react';
 
-type Tab = 'students' | 'schools' | 'nation';
+type Tab = 'students' | 'schools';
 
 const tabs: { id: Tab; label: string; sublabel: string; num: string }[] = [
   { id: 'students', label: 'Students', sublabel: 'What every participant gains', num: '01' },
   { id: 'schools',  label: 'Schools',  sublabel: 'What every institution earns', num: '02' },
-  { id: 'nation',   label: 'Nation',   sublabel: 'What the country builds',      num: '03' },
 ];
 
 const content: Record<Tab, { icon: React.ReactNode; title: string; desc: string }[]> = {
@@ -36,14 +34,6 @@ const content: Record<Tab, { icon: React.ReactNode; title: string; desc: string 
     { icon: <Factory size={20} />,    title: 'Factory for Young Entrepreneurs',          desc: 'Position your school as the institution that doesn\'t just teach students — it builds founders, leaders, and innovators.' },
     { icon: <Network size={20} />,    title: 'Catalyst for Inter-School Innovation',     desc: 'Be recognized as the school that sparked collaboration and healthy competition across institutions in your city.' },
     { icon: <Flag size={20} />,       title: 'Lead the Change',                          desc: 'Schools that host WBC don\'t follow education trends — they set them, becoming the benchmark others aspire to.' },
-  ],
-  nation: [
-    { icon: <Lightbulb size={20} />,    title: 'Entrepreneurship Ecosystem', desc: 'Thousands of students exposed to startup thinking annually creates a pipeline of founders India urgently needs.' },
-    { icon: <GraduationCap size={20} />, title: 'Financially Literate Youth', desc: 'WBC seeds financial awareness early — reducing future dependence on debt traps and building a generation that understands money.' },
-    { icon: <Globe size={20} />,         title: 'Innovation Culture at Scale', desc: 'When thousands of schools host WBC, innovation stops being an exception and becomes a national expectation.' },
-    { icon: <Sprout size={20} />,        title: 'Grassroots Skill Development', desc: 'WBC reaches Tier 2 and Tier 3 cities, ensuring opportunity is not confined to metro corridors.' },
-    { icon: <Factory size={20} />,       title: 'Industry-Ready Workforce',   desc: 'Students shaped by WBC enter colleges already understanding business fundamentals — accelerating India\'s human capital.' },
-    { icon: <Flag size={20} />,          title: 'Viksit Bharat Alignment',    desc: 'WBC directly supports national goals around youth entrepreneurship and the vision of a developed India by 2047.' },
   ],
 };
 
@@ -77,7 +67,7 @@ export default function OutcomesPage() {
             Outcomes
           </h1>
           <p className="text-base md:text-lg text-zinc-500 max-w-xl mx-auto">
-            WBC creates measurable impact across every stakeholder — students, schools, and the nation.
+            WBC creates measurable impact across every stakeholder — students and schools.
           </p>
         </div>
       </section>
@@ -87,7 +77,7 @@ export default function OutcomesPage() {
         <div className="max-w-6xl mx-auto">
 
           {/* Tab selector */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-8">
             {tabs.map((tab) => {
               const isActive = active === tab.id;
               return (

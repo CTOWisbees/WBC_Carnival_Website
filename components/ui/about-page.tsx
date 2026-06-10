@@ -12,12 +12,10 @@ import {
   Instagram,
   Youtube,
   Award,
-  Lightbulb,
-  Users,
   BookOpen,
   Globe,
   Tv,
-  Trophy,
+  PiggyBank,
 } from 'lucide-react';
 
 const coreValues: TimelineItem[] = [
@@ -59,20 +57,11 @@ const coreValues: TimelineItem[] = [
   },
   {
     id: 5,
-    title: 'Mentorship Network',
+    title: 'Financial Literacy - Impact Workshops',
     date: 'Community',
-    content: 'Connecting student entrepreneurs with seasoned business mentors, industry leaders, and WBC alumni to guide their entrepreneurial journey beyond the event.',
-    category: 'Network',
-    icon: Users,
-    status: 'completed',
-  },
-  {
-    id: 6,
-    title: 'Certification & Recognition',
-    date: 'Achievement',
-    content: 'Formal certification for student participants and award programs that recognise outstanding business ideas, leadership, and entrepreneurial excellence at every WBC event.',
-    category: 'Awards',
-    icon: Trophy,
+    content: 'Inclusive financial literacy workshops for women, students, parents, and teachers focused on money management, financial planning, mutual fund awareness, and stock investment simulations.',
+    category: 'Finance',
+    icon: PiggyBank,
     status: 'completed',
   },
 ];

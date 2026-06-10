@@ -4,12 +4,7 @@ import path from "path";
 const nextConfig: NextConfig = {
   // Tells Next.js the real project root, fixing the pnpm-lock confusion
   outputFileTracingRoot: path.resolve(__dirname),
-  // Emit a fully static site into ./out for free hosting on Cloudflare Pages.
-  output: "export",
   images: {
-    // Image Optimization server doesn't exist in a static export, so serve
-    // images as-is. External URLs (Unsplash etc.) are unaffected.
-    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "randomuser.me" },
