@@ -97,3 +97,5 @@ export const DockItem = ({ mouseX, children }: DockItemProps) => {
     </motion.div>
   );
 };
+
+
