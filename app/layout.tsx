@@ -23,7 +23,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <SiteContentProvider value={content}>
+        <SiteContentProvider initial={content}>
           <CountdownBanner ctaHref="#" />
           {children}
         </SiteContentProvider>

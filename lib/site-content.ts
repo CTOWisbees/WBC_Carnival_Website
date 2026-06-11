@@ -64,16 +64,30 @@ export interface SiteContent {
 
 const DJANGO_URL = process.env.NEXT_PUBLIC_DJANGO_URL ?? "http://127.0.0.1:8000";
 
+// Build-time fetch (runs during `next build`). Bakes the latest content into
+// the static HTML for a fast first paint and good SEO. If the backend is
+// unreachable at build time this returns null and the live client fetch below
+// fills the content in once the page loads.
 export async function getSiteContent(): Promise<SiteContent | null> {
   try {
     const res = await fetch(`${DJANGO_URL}/api/content/`, {
-      // Re-fetch at most once a minute so admin edits show up without a redeploy.
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
     return (await res.json()) as SiteContent;
   } catch {
-    // Backend down / not yet set up — let components use their defaults.
+    return null;
+  }
+}
+
+// Runtime fetch (runs in the visitor's browser). Always fetches fresh so an
+// admin's edit appears on the next page load — no rebuild or redeploy needed.
+export async function fetchSiteContentLive(): Promise<SiteContent | null> {
+  try {
+    const res = await fetch(`${DJANGO_URL}/api/content/`, { cache: "no-store" });
+    if (!res.ok) return null;
+    return (await res.json()) as SiteContent;
+  } catch {
     return null;
   }
 }

@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
       // Django content admin (local dev) — serves uploaded logos/images/media.
       { protocol: "http", hostname: "127.0.0.1", port: "8000" },
       { protocol: "http", hostname: "localhost", port: "8000" },
+      // Production: uploaded images/videos are served from Supabase Storage.
+      { protocol: "https", hostname: "**.supabase.co" },
     ],
   },
 };

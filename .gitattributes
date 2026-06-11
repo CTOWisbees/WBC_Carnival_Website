@@ -1,0 +1,2 @@
+# Render runs on Linux — shell scripts must use LF line endings, not CRLF.
+*.sh text eol=lf

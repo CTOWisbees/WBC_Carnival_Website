@@ -1,3 +1,11 @@
 Django>=5.0,<5.2
 Pillow>=10.0
 django-cors-headers>=4.3
+
+# Production hosting (Render + Neon + Cloudflare R2)
+gunicorn>=21.2
+whitenoise>=6.6
+dj-database-url>=2.1
+psycopg[binary]>=3.1
+django-storages>=1.14
+boto3>=1.34

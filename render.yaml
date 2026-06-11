@@ -1,0 +1,45 @@
+# Render Blueprint for the WBC content admin (Django).
+# You can either import this file (New + → Blueprint) or create the service by
+# hand in the dashboard — DEPLOY.md walks through the manual path.
+services:
+  - type: web
+    name: wbc-admin
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: "bash build.sh"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.4"
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true        # Render generates a strong secret for you.
+      # Everything below is set by hand in the dashboard (secrets / your values).
+      - key: DJANGO_ALLOWED_HOSTS
+        sync: false                # e.g. admin.wisbees.com
+      - key: DJANGO_CSRF_TRUSTED_ORIGINS
+        sync: false                # e.g. https://admin.wisbees.com
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false                # e.g. https://www.wisbees.com,https://wisbees.com
+      - key: DATABASE_URL
+        sync: false                # from Neon
+      - key: S3_BUCKET_NAME
+        sync: false                # wbc-media
+      - key: S3_ACCESS_KEY_ID
+        sync: false                # from Supabase Storage S3 keys
+      - key: S3_SECRET_ACCESS_KEY
+        sync: false
+      - key: S3_ENDPOINT_URL
+        sync: false                # https://<ref>.supabase.co/storage/v1/s3
+      - key: S3_REGION
+        sync: false                # e.g. ap-southeast-1
+      - key: S3_PUBLIC_HOST
+        sync: false                # <ref>.supabase.co/storage/v1/object/public/wbc-media
+      - key: DJANGO_SUPERUSER_USERNAME
+        sync: false
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false
