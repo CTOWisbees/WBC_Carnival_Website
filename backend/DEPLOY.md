@@ -61,7 +61,7 @@ Three free accounts are involved:
    - **Root Directory:** `backend`
    - **Runtime:** Python
    - **Build Command:** `bash build.sh`
-   - **Start Command:** `gunicorn config.wsgi:application`
+   - **Start Command:** `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT`
    - **Instance type:** Free
 5. Add **Environment Variables** (Advanced → Add Environment Variable):
 
