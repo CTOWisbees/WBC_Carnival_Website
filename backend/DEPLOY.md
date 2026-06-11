@@ -95,14 +95,18 @@ Three free accounts are involved:
 
 ## Phase 4 — Put the admin on admin.wisbees.com (Cloudflare DNS)
 
+wisbees.com is *registered* at BigRock, but its nameservers point to
+**Cloudflare** (`*.ns.cloudflare.com`), so DNS records are edited in the
+**Cloudflare dashboard**, not BigRock. (Records added in BigRock are ignored.)
+
 1. In Render → your service → **Settings → Custom Domains → Add**:
    `admin.wisbees.com`. Render shows a DNS target like
-   `wbc-admin.onrender.com`.
-2. In Cloudflare → your `wisbees.com` domain → **DNS → Add record**:
+   `wbc-admin-2954.onrender.com`.
+2. In Cloudflare → **wisbees.com → DNS → Add record**:
    - Type: `CNAME`
    - Name: `admin`
-   - Target: the Render target (`wbc-admin.onrender.com`)
-   - Proxy status: **DNS only** (grey cloud), to start.
+   - Target: the Render target (`wbc-admin-2954.onrender.com`)
+   - Proxy status: **DNS only** (grey cloud) — so Render can verify and issue HTTPS.
 3. Wait a few minutes; Render verifies the domain and issues HTTPS.
    `https://admin.wisbees.com/admin` should now load.
 
