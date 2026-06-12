@@ -98,6 +98,15 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({
   const [list, setList] = useState(data);
   const pausedRef = useRef(false);
 
+  // Re-sync when the underlying data changes (e.g. live content loads after
+  // mount, replacing the build-time/fallback list). Keyed on a content
+  // signature rather than the array ref, which is rebuilt every render.
+  const dataKey = data.map((d) => d.by + d.testimonial).join('|');
+  useEffect(() => {
+    setList(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataKey]);
+
   const handleMove = (steps: number) => {
     pausedRef.current = true;
     setTimeout(() => { pausedRef.current = false; }, 6000);
