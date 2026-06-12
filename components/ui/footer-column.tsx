@@ -1,6 +1,6 @@
 'use client';
 
-import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
 
 const navLinks = [
   { label: 'About Us', href: '/about' },
@@ -10,10 +10,10 @@ const navLinks = [
 ];
 
 const socialIcons = [
-  { icon: <Instagram className="h-5 w-5" />, href: '#', label: 'Instagram' },
-  { icon: <Twitter className="h-5 w-5" />, href: '#', label: 'Twitter' },
-  { icon: <Linkedin className="h-5 w-5" />, href: '#', label: 'LinkedIn' },
-  { icon: <Youtube className="h-5 w-5" />, href: '#', label: 'YouTube' },
+  { icon: <Facebook className="h-5 w-5" />, href: 'https://www.facebook.com/wisbeesmedia', label: 'Facebook' },
+  { icon: <Instagram className="h-5 w-5" />, href: 'https://www.instagram.com/wisbeesbuzz/', label: 'Instagram' },
+  { icon: <Linkedin className="h-5 w-5" />, href: 'https://www.linkedin.com/company/wisbees', label: 'LinkedIn' },
+  { icon: <Youtube className="h-5 w-5" />, href: 'https://www.youtube.com/@wisbees2023', label: 'YouTube' },
 ];
 
 export default function FooterNewsletter() {
@@ -57,6 +57,8 @@ export default function FooterNewsletter() {
             <a
               key={item.label}
               href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={item.label}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700 text-zinc-400 hover:text-white hover:border-zinc-400 transition-colors duration-200"
             >
