@@ -166,11 +166,8 @@ export const Testimonials = () => {
           className="flex flex-col items-center justify-center max-w-[540px] mx-auto"
         >
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mt-5">
-            What our clients say
+            Testimonials
           </h2>
-          <p className="text-center mt-5 opacity-75">
-            Trusted by hundreds of businesses around the world.
-          </p>
         </motion.div>
 
         <div className="flex justify-center gap-4 md:gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">

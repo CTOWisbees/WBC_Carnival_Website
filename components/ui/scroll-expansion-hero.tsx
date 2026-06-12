@@ -300,13 +300,13 @@ const ScrollExpandMedia = ({
 
               {/* Title words that slide apart */}
               <div
-                className={`flex items-center justify-center text-center gap-4 w-full relative z-10 flex-col ${
-                  textBlend && scrollProgress < 0.01 ? 'mix-blend-difference' : 'mix-blend-normal'
-                }`}
+                className='flex items-center justify-center text-center gap-4 w-full relative z-10 flex-col mix-blend-normal'
               >
                 <motion.h2
                   className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold ${
-                    textBlend && scrollProgress < 0.01 ? 'text-white' : 'text-gray-900'
+                    textBlend && scrollProgress < 0.01
+                      ? 'text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]'
+                      : 'text-gray-900'
                   }`}
                   style={{ transform: `translateX(-${textTranslateX}vw)`, willChange: 'transform' }}
                 >
@@ -314,7 +314,9 @@ const ScrollExpandMedia = ({
                 </motion.h2>
                 <motion.h2
                   className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center ${
-                    textBlend && scrollProgress < 0.01 ? 'text-white' : 'text-gray-900'
+                    textBlend && scrollProgress < 0.01
+                      ? 'text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]'
+                      : 'text-gray-900'
                   }`}
                   style={{ transform: `translateX(${textTranslateX}vw)`, willChange: 'transform' }}
                 >

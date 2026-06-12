@@ -44,17 +44,14 @@ export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string })
           background: 'linear-gradient(to right, #6b0e0e 0%, #2d1606 45%, #0e2d0e 100%)',
         }}
       >
-        {/* Left — label */}
-        <span className="text-white/70 text-[10px] sm:text-xs tracking-wide whitespace-nowrap shrink-0">
-          <span className="hidden sm:inline">Limited Offer</span>
-          <span className="sm:hidden">🎟</span>
-        </span>
+        {/* Left — spacer (keeps CTA right-aligned) */}
+        <span className="shrink-0" aria-hidden />
 
         {/* Center — countdown */}
         <div className="flex items-center gap-0.5 sm:gap-1.5 absolute left-1/2 -translate-x-1/2">
           <span className="text-white/90 text-[10px] sm:text-xs mr-0.5 sm:mr-1 whitespace-nowrap">
-            <span className="hidden sm:inline">Early Bird ends in</span>
-            <span className="sm:hidden">Ends in</span>
+            <span className="hidden sm:inline">Coming to Pune in</span>
+            <span className="sm:hidden">Coming in</span>
           </span>
 
           {(['DAYS', 'HRS', 'MIN', 'SEC'] as const).map((label, i) => {
