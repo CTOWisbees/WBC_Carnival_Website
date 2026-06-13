@@ -51,7 +51,7 @@ const STATE_STATS: Record<string, StateStat> = {
   'Uttar Pradesh': { avgAge: 24.7, finLit: 24, startups: 20162, urbanUnemp: 6.5, ruralUnemp: 1.5 },
   'Uttarakhand': { avgAge: 28.5, finLit: 42, startups: 1708, urbanUnemp: 6.6, ruralUnemp: 3.9 },
   'West Bengal': { avgAge: 31.5, finLit: 21, startups: 6768, urbanUnemp: 3.8, ruralUnemp: 1.5 },
-  'Telangana': { startups: 11434, urbanUnemp: 7.8, ruralUnemp: 2.8 },
+  'Telangana': { avgAge: 31.2, startups: 11434, urbanUnemp: 7.8, ruralUnemp: 2.8 },
   'Ladakh': { startups: 25, urbanUnemp: 10.8, ruralUnemp: 5.7 },
   'Andaman and Nicobar Islands': { startups: 89, urbanUnemp: 14.0, ruralUnemp: 6.6 },
   'Dadra and Nagar Haveli and Daman and Diu': { startups: 89, urbanUnemp: 1.4, ruralUnemp: 4.1 },
@@ -158,7 +158,7 @@ export default function IndiaOpportunityMap() {
                   className="pointer-events-none absolute z-10 w-52 rounded-xl border border-zinc-800 bg-zinc-950 p-3 shadow-2xl"
                   style={{
                     left: Math.min(pos.x + 14, (wrapRef.current?.clientWidth ?? 0) - 220),
-                    top: Math.max(pos.y - 10, 8),
+                    top: pos.y + 18,
                   }}
                 >
                   <p className="text-sm font-bold text-white">{active}</p>
