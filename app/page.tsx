@@ -7,6 +7,7 @@ import { Testimonials } from '@/components/ui/testimonials-columns-1';
 import { AnimatedDock } from '@/components/ui/animated-dock';
 import FooterNewsletter from '@/components/ui/footer-column';
 import { LogoCloud } from '@/components/ui/logo-cloud-3';
+import IndiaOpportunityMap from '@/components/ui/india-opportunity-map';
 import { InfiniteSlider } from '@/components/ui/infinite-slider';
 import { Github, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 import Image from 'next/image';
@@ -205,6 +206,9 @@ export default function Home() {
           </div>{/* end inner grid */}
         </div>
       </section>
+
+      {/* The Opportunity — interactive India map */}
+      <IndiaOpportunityMap />
 
       {/* Glimpses from the Past */}
       <GlimpsesSection images={homeGlimpses} />
