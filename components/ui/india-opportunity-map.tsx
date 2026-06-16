@@ -62,9 +62,6 @@ export default function IndiaOpportunityMap() {
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <div className="mb-8 md:mb-10">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
-            The Opportunity
-          </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-zinc-900 leading-tight">
             How Wisbees Business Carnival Is Unlocking the Massive
             <br className="hidden md:block" /> Entrepreneurial Potential of Young India

@@ -136,12 +136,7 @@ export default function SponsorsPage() {
         <div className="max-w-6xl mx-auto">
 
           {/* Section header */}
-          <div className="text-center mb-14 pt-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-white/40 inline-block" />
-              <span className="text-xs font-semibold tracking-widest uppercase text-white/40">Sponsorship Tiers</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-white/40 inline-block" />
-            </div>
+          <div className="text-center mb-14 pt-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
               Choose Your Impact Level
             </h2>

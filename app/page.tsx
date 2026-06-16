@@ -30,9 +30,6 @@ function GlimpsesSection({ images = glimpses }: { images?: { src: string; alt: s
   return (
     <section className="bg-white py-14 md:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-10 text-center">
-        <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-2">
-          Past Events
-        </p>
         <h2 className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900">
           Glimpses from the Past
         </h2>
@@ -125,9 +122,7 @@ export default function Home() {
       {/* Trusted by — logo cloud */}
       <section className="relative mx-auto max-w-3xl px-4 py-6 md:py-10">
         <h2 className="mb-5 text-center font-medium text-foreground text-xl tracking-tight md:text-3xl">
-          <span className="text-muted-foreground">Trusted by schools.</span>
-          <br />
-          <span className="font-semibold">Backed by real partners.</span>
+          <span className="font-semibold">Trusted by schools</span>
         </h2>
         <div className="mx-auto my-5 h-px max-w-sm bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
         <LogoCloud logos={partners} />
@@ -140,9 +135,6 @@ export default function Home() {
 
           {/* Heading */}
           <div className="mb-8">
-            <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
-              2026 Edition
-            </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-zinc-900 leading-tight">
               Why does your child need the Wisbees Business Carnival, 2026?
             </h2>
@@ -222,9 +214,6 @@ export default function Home() {
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-zinc-950/75" aria-hidden />
         <div className="relative z-10">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-300 mb-4">
-            Wisbees Responsibility
-          </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4">
             Entrepreneurial Education is a<br />
             <span className="text-white/50">Basic Right of Every Child,</span> Regardless of Economic Background.
