@@ -31,6 +31,11 @@ class SiteConfigAdmin(admin.ModelAdmin):
         ("Home Hero — Text", {
             "fields": ("hero_title", "hero_subtitle"),
         }),
+        ("Announcement Banner", {
+            "fields": ("countdown_location", "countdown_date"),
+            "description": "Set the event city and the date & time the top countdown banner "
+                           "counts down to. Change them any time; clear to use the site defaults.",
+        }),
     )
 
     @admin.display(description="Logo")

@@ -37,6 +37,16 @@ class SiteConfig(models.Model):
         help_text="Optional one-line subtitle under the hero title. "
                   "Leave blank to keep the styled default text.",
     )
+    countdown_location = models.CharField(
+        max_length=80, blank=True,
+        help_text="City where the event is happening, e.g. 'Pune'. Shown in the top banner "
+                  "as 'Coming to <city> in …'. Leave blank to use the site default.",
+    )
+    countdown_date = models.DateTimeField(
+        null=True, blank=True,
+        help_text="Target date & time the top announcement banner counts down to. "
+                  "Change this any time to reset the countdown. Leave blank to use the site default.",
+    )
 
     class Meta:
         verbose_name = "Site Configuration"

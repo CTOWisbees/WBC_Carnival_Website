@@ -24,6 +24,11 @@ def content_api(request):
         "heroVideo": _resolve(request, config.hero_video if config else None, ""),
         "heroTitle": (config.hero_title if config else "") or "",
         "heroSubtitle": (config.hero_subtitle if config else "") or "",
+        "countdownDate": (
+            config.countdown_date.isoformat()
+            if config and config.countdown_date else ""
+        ),
+        "countdownLocation": (config.countdown_location if config else "") or "",
     }
 
     partners = [

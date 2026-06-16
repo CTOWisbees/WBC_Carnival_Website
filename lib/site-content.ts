@@ -9,6 +9,8 @@ export interface SiteInfo {
   heroVideo: string;
   heroTitle: string;
   heroSubtitle: string;
+  countdownDate: string;
+  countdownLocation: string;
 }
 
 export interface PartnerLogoItem {
