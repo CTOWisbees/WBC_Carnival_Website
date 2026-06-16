@@ -25,12 +25,12 @@ const wisbeesProducts = [
   {
     name: 'Buzz by Wisbees',
     tagline: 'Join Community & FAQs',
-    href: '#',
+    href: 'https://buzz.wisbees.com/categories',
   },
   {
     name: 'WisBees',
     tagline: 'Storytelling platform of business and finance',
-    href: '#',
+    href: 'https://www.wisbees.com/',
   },
   {
     name: 'Wisbees Wealth',
@@ -181,6 +181,7 @@ export default function Navbar() {
                     <Link
                       key={p.name}
                       href={p.href}
+                      {...(p.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                       className={`flex flex-col gap-0.5 px-4 py-3.5 hover:bg-white/10 transition-colors duration-150 ${
                         i !== wisbeesProducts.length - 1 ? 'border-b border-white/[0.06]' : ''
                       }`}
@@ -282,6 +283,7 @@ export default function Navbar() {
                       <li key={p.name}>
                         <Link
                           href={p.href}
+                          {...(p.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                           className="flex flex-col px-4 py-2.5 rounded-lg hover:bg-white/10 transition"
                           onClick={() => setMobileOpen(false)}
                         >

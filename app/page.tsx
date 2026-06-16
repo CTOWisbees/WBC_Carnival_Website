@@ -9,7 +9,7 @@ import FooterNewsletter from '@/components/ui/footer-column';
 import { LogoCloud } from '@/components/ui/logo-cloud-3';
 import IndiaOpportunityMap from '@/components/ui/india-opportunity-map';
 import { InfiniteSlider } from '@/components/ui/infinite-slider';
-import { Github, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
+import { Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import { useSiteContent } from '@/components/site-content-provider';
 
@@ -73,11 +73,10 @@ function GlimpsesSection({ images = glimpses }: { images?: { src: string; alt: s
 }
 
 const dockItems = [
-  { link: 'https://github.com', target: '_blank', Icon: <Github size={22} /> },
-  { link: 'https://twitter.com', target: '_blank', Icon: <Twitter size={22} /> },
-  { link: 'https://linkedin.com', target: '_blank', Icon: <Linkedin size={22} /> },
-  { link: 'https://instagram.com', target: '_blank', Icon: <Instagram size={22} /> },
-  { link: 'https://youtube.com', target: '_blank', Icon: <Youtube size={22} /> },
+  { link: 'https://www.facebook.com/wisbeesmedia', target: '_blank', Icon: <Facebook size={22} /> },
+  { link: 'https://www.linkedin.com/company/wisbees', target: '_blank', Icon: <Linkedin size={22} /> },
+  { link: 'https://www.instagram.com/wisbeesbuzz/', target: '_blank', Icon: <Instagram size={22} /> },
+  { link: 'https://www.youtube.com/@wisbees2023', target: '_blank', Icon: <Youtube size={22} /> },
 ];
 
 export default function Home() {

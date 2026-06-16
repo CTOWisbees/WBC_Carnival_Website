@@ -6,8 +6,7 @@ import FooterNewsletter from '@/components/ui/footer-column';
 import { AnimatedDock } from '@/components/ui/animated-dock';
 import RadialOrbitalTimeline, { type TimelineItem } from '@/components/ui/radial-orbital-timeline';
 import {
-  Github,
-  Twitter,
+  Facebook,
   Linkedin,
   Instagram,
   Youtube,
@@ -67,11 +66,10 @@ const coreValues: TimelineItem[] = [
 ];
 
 const dockItems = [
-  { link: 'https://github.com', target: '_blank', Icon: <Github size={22} /> },
-  { link: 'https://twitter.com', target: '_blank', Icon: <Twitter size={22} /> },
-  { link: 'https://linkedin.com', target: '_blank', Icon: <Linkedin size={22} /> },
-  { link: 'https://instagram.com', target: '_blank', Icon: <Instagram size={22} /> },
-  { link: 'https://youtube.com', target: '_blank', Icon: <Youtube size={22} /> },
+  { link: 'https://www.facebook.com/wisbeesmedia', target: '_blank', Icon: <Facebook size={22} /> },
+  { link: 'https://www.linkedin.com/company/wisbees', target: '_blank', Icon: <Linkedin size={22} /> },
+  { link: 'https://www.instagram.com/wisbeesbuzz/', target: '_blank', Icon: <Instagram size={22} /> },
+  { link: 'https://www.youtube.com/@wisbees2023', target: '_blank', Icon: <Youtube size={22} /> },
 ];
 
 export default function AboutPage() {
