@@ -3,7 +3,6 @@
 import Navbar from '@/components/ui/navbar';
 import FooterNewsletter from '@/components/ui/footer-column';
 import HomeBackground from '@/components/ui/background-components';
-import Image from 'next/image';
 
 export default function ProBonoPage() {
   return (
@@ -61,17 +60,6 @@ export default function ProBonoPage() {
             </p>
           </div>
 
-          {/* Photo */}
-          <div className="relative w-full rounded-2xl overflow-hidden mb-14 border border-white/10">
-            <Image
-              src="/Picture1.png"
-              alt="Pro bono WBC event — children participating"
-              width={1200}
-              height={700}
-              className="w-full h-auto object-cover"
-              priority
-            />
-          </div>
 
           {/* CTA block */}
           <div className="rounded-2xl border border-white/10 bg-white/5 p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">

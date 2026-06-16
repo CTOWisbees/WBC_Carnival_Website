@@ -76,33 +76,47 @@ export default function OutcomesPage() {
       <section className="bg-white py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
 
-          {/* Tab selector */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-8">
-            {tabs.map((tab) => {
-              const isActive = active === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActive(tab.id)}
-                  className={`group relative overflow-hidden flex items-center justify-between text-left rounded-lg border-2 px-4 py-2.5 transition-all duration-300 ${
-                    isActive
-                      ? 'bg-zinc-950 border-zinc-950'
-                      : 'bg-white border-zinc-200 hover:border-zinc-900 hover:shadow-sm'
-                  }`}
-                >
-                  <div>
-                    <p className={`text-[9px] font-semibold tracking-widest uppercase transition-colors duration-300 ${isActive ? 'text-white/40' : 'text-zinc-400'}`}>
-                      Outcomes for
-                    </p>
-                    <h3 className={`text-sm font-black tracking-tight transition-colors duration-300 ${isActive ? 'text-white' : 'text-zinc-900'}`}>
+          {/* Segmented toggle */}
+          <div className="flex justify-center mb-3">
+            <div className="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 p-1.5">
+              {tabs.map((tab) => {
+                const isActive = active === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActive(tab.id)}
+                    aria-pressed={isActive}
+                    className="relative rounded-full px-7 sm:px-10 py-2.5 text-sm font-bold cursor-pointer outline-none"
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="outcomePill"
+                        className="absolute inset-0 rounded-full bg-zinc-950 shadow-lg shadow-zinc-900/25"
+                        transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                      />
+                    )}
+                    <span className={`relative z-10 transition-colors duration-300 ${isActive ? 'text-white' : 'text-zinc-500 hover:text-zinc-900'}`}>
                       {tab.label}
-                    </h3>
-                  </div>
-                  <span className={`shrink-0 w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-white scale-125' : 'bg-zinc-300 group-hover:bg-zinc-500'}`} />
-                </button>
-              );
-            })}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          {/* Active sublabel */}
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={active}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.2 }}
+              className="text-center text-zinc-500 text-sm mb-10"
+            >
+              {tabs.find((t) => t.id === active)?.sublabel}
+            </motion.p>
+          </AnimatePresence>
 
           {/* Animated content grid */}
           <AnimatePresence mode="wait">
@@ -122,40 +136,25 @@ export default function OutcomesPage() {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="group relative flex flex-col gap-0 rounded-2xl border border-zinc-200 bg-white overflow-hidden hover:border-zinc-900 transition-colors duration-300"
+                  className="group relative rounded-2xl border border-zinc-200 bg-white p-6 hover:bg-zinc-950 hover:border-zinc-950 hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-900/10 transition-all duration-300"
                 >
-                  {/* Top accent line */}
-                  <span className="absolute top-0 inset-x-0 h-[2px] bg-zinc-200 group-hover:bg-zinc-900 transition-colors duration-300" />
-
-                  {/* Ghost number */}
-                  <span className="absolute bottom-2 right-3 text-[72px] font-black leading-none select-none pointer-events-none text-zinc-100 group-hover:text-zinc-800/10 transition-colors duration-300">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-
-                  <div className="relative z-10 p-6 flex flex-col gap-4 h-full">
+                  <div className="flex items-start justify-between mb-5">
                     {/* Icon */}
-                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-950 text-white group-hover:bg-white group-hover:text-zinc-900 border border-zinc-900 transition-all duration-300">
+                    <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-zinc-100 text-zinc-900 group-hover:bg-white/10 group-hover:text-white transition-colors duration-300">
                       {icon}
                     </div>
-
-                    {/* Text */}
-                    <div>
-                      <h3 className="font-bold text-zinc-900 mb-2 text-[15px] leading-snug">
-                        {title}
-                      </h3>
-                      <p className="text-sm text-zinc-500 leading-relaxed">
-                        {desc}
-                      </p>
-                    </div>
-
-                    {/* Bottom arrow indicator */}
-                    <div className="mt-auto pt-4 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="h-px flex-1 bg-zinc-200" />
-                      <span className="text-[10px] font-semibold tracking-widest uppercase text-zinc-400">
-                        WBC Outcome
-                      </span>
-                    </div>
+                    {/* Number */}
+                    <span className="text-sm font-black tracking-widest text-zinc-300 group-hover:text-white/30 transition-colors duration-300">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                   </div>
+
+                  <h3 className="font-bold text-zinc-900 group-hover:text-white mb-2 text-base leading-snug transition-colors duration-300">
+                    {title}
+                  </h3>
+                  <p className="text-sm text-zinc-500 group-hover:text-zinc-300 leading-relaxed transition-colors duration-300">
+                    {desc}
+                  </p>
                 </motion.div>
               ))}
             </motion.div>

@@ -1,0 +1,37 @@
+// Financially literate adults per state, in % (NCFE-FLIS 2019).
+// Edit values here. Keys must match state names in INDIA_MAP.
+// Omit a state to mark its financial-literacy data as unavailable.
+
+export const FINANCIAL_LITERACY: Record<string, number> = {
+  'Andhra Pradesh': 32,
+  'Arunachal Pradesh': 12,
+  'Assam': 31,
+  'Bihar': 18,
+  'Chandigarh': 50,
+  'Chhattisgarh': 9,
+  'Delhi': 53,
+  'Goa': 56,
+  'Gujarat': 34,
+  'Haryana': 27,
+  'Himachal Pradesh': 36,
+  'Jammu and Kashmir': 28,
+  'Jharkhand': 22,
+  'Karnataka': 33,
+  'Kerala': 36,
+  'Madhya Pradesh': 23,
+  'Maharashtra': 33,
+  'Manipur': 30,
+  'Meghalaya': 22,
+  'Mizoram': 6,
+  'Nagaland': 8,
+  'Odisha': 11,
+  'Puducherry': 28,
+  'Punjab': 35,
+  'Rajasthan': 25,
+  'Sikkim': 10,
+  'Tamil Nadu': 16,
+  'Tripura': 20,
+  'Uttar Pradesh': 24,
+  'Uttarakhand': 42,
+  'West Bengal': 21,
+};

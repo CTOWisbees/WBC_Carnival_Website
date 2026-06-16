@@ -216,23 +216,30 @@ export default function Home() {
       <Testimonials />
 
       {/* Wisbees Responsibility */}
-      <section className="bg-zinc-950 py-16 md:py-20 px-4 text-center">
-        <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-4">
-          Wisbees Responsibility
-        </p>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-          Every Child Deserves<br />
-          <span className="text-white/40">a Shot at</span> the WBC Stage.
-        </h2>
-        <p className="text-zinc-400 text-base max-w-xl mx-auto mb-10">
-          We run pro bono WBC events for underprivileged children — because every child deserves a stage, regardless of where they come from.
-        </p>
-        <a
-          href="/pro-bono"
-          className="inline-flex items-center gap-2 bg-white text-zinc-950 font-bold text-sm px-7 py-3.5 rounded-xl hover:bg-zinc-100 transition-all duration-200"
-        >
-          Sponsor a Pro Bono WBC Event <span aria-hidden>→</span>
-        </a>
+      <section
+        className="relative bg-zinc-950 bg-cover bg-center py-16 md:py-20 px-4 text-center"
+        style={{ backgroundImage: 'url(/Picture1.png)' }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-zinc-950/75" aria-hidden />
+        <div className="relative z-10">
+          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-300 mb-4">
+            Wisbees Responsibility
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+            Entrepreneurial Education is a<br />
+            <span className="text-white/50">Basic Right of Every Child,</span> Regardless of Economic Background.
+          </h2>
+          <p className="text-zinc-200 text-base max-w-xl mx-auto mb-10">
+            We run pro bono WBC events for underprivileged children — because every child deserves a stage, regardless of where they come from. Help us make this a reality.
+          </p>
+          <a
+            href="/pro-bono"
+            className="inline-flex items-center gap-2 bg-white text-zinc-950 font-bold text-sm px-7 py-3.5 rounded-xl hover:bg-zinc-100 transition-all duration-200"
+          >
+            Sponsor a Pro Bono WBC Event <span aria-hidden>→</span>
+          </a>
+        </div>
       </section>
 
       <div className="flex justify-center py-12 bg-background">
