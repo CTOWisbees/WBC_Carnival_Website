@@ -90,7 +90,13 @@ export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string })
               animation: 'wbcShimmer 3.5s linear infinite',
             }}
           >
-            <span className="hidden sm:inline">Coming to {location} in</span>
+            <span className="hidden sm:inline">
+              Coming to{' '}
+              <span className="text-sm sm:text-base font-extrabold text-yellow-300 tracking-tight">
+                {location}
+              </span>{' '}
+              in
+            </span>
             <span className="sm:hidden">Coming in</span>
           </span>
 
@@ -120,6 +126,8 @@ export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string })
         {/* Right — CTA */}
         <a
           href={ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-[10px] sm:text-xs font-bold text-zinc-900 bg-yellow-300 hover:bg-yellow-200 transition-colors whitespace-nowrap shrink-0 rounded-full px-3 py-1.5"
         >
           <span className="hidden sm:inline">Register Now </span>

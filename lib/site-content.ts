@@ -13,6 +13,13 @@ export interface SiteInfo {
   countdownLocation: string;
 }
 
+export interface ContactInfo {
+  address: string;
+  mobile: string;
+  whatsapp: string;
+  email: string;
+}
+
 export interface PartnerLogoItem {
   name: string;
   image: string;
@@ -48,6 +55,7 @@ export interface SponsorshipTierEntry {
 
 export interface SiteContent {
   site: SiteInfo;
+  contact: ContactInfo;
   partners: PartnerLogoItem[];
   gallery: GalleryItem[];
   sponsorshipTiers: SponsorshipTierEntry[];

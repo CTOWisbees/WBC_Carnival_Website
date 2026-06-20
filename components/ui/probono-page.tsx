@@ -72,10 +72,12 @@ export default function ProBonoPage() {
               </p>
             </div>
             <a
-              href="#"
+              href="https://forms.office.com/Pages/ResponsePage.aspx?id=-9pCn9Lae0ahvLMs4X5cBmXGZ0APs9lFoHMR9wWOgelUMzlSUElaSkw1TVBRS0hYWVhDN0Y5WFM1MS4u"
+              target="_blank"
+              rel="noopener noreferrer"
               className="shrink-0 inline-flex items-center gap-2 bg-white text-zinc-950 font-bold text-sm px-7 py-3.5 rounded-xl hover:bg-zinc-100 transition-all duration-200 whitespace-nowrap"
             >
-              Sponsor Now <span aria-hidden>→</span>
+              Support Now <span aria-hidden>→</span>
             </a>
           </div>
 

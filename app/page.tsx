@@ -214,7 +214,7 @@ export default function Home() {
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-zinc-950/75" aria-hidden />
         <div className="relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight mb-4">
             Entrepreneurial Education is a<br />
             <span className="text-white/50">Basic Right of Every Child,</span> Regardless of Economic Background.
           </h2>
@@ -225,7 +225,7 @@ export default function Home() {
             href="/pro-bono"
             className="inline-flex items-center gap-2 bg-white text-zinc-950 font-bold text-sm px-7 py-3.5 rounded-xl hover:bg-zinc-100 transition-all duration-200"
           >
-            Sponsor a Pro Bono WBC Event <span aria-hidden>→</span>
+            Support a Pro Bono WBC Event <span aria-hidden>→</span>
           </a>
         </div>
       </section>

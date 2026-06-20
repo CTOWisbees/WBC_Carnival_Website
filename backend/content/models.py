@@ -48,6 +48,24 @@ class SiteConfig(models.Model):
                   "Change this any time to reset the countdown. Leave blank to use the site default.",
     )
 
+    # Contact details — shown on the Contact Us page.
+    contact_address = models.TextField(
+        blank=True,
+        help_text="Full postal address shown on the Contact Us page.",
+    )
+    contact_mobile = models.CharField(
+        max_length=40, blank=True,
+        help_text="Phone number, e.g. +91 98765 43210.",
+    )
+    contact_whatsapp = models.CharField(
+        max_length=40, blank=True,
+        help_text="WhatsApp number, e.g. +91 98765 43210. Used to build a wa.me chat link.",
+    )
+    contact_email = models.EmailField(
+        max_length=200, blank=True,
+        help_text="Public contact email address.",
+    )
+
     class Meta:
         verbose_name = "Site Configuration"
         verbose_name_plural = "Site Configuration"

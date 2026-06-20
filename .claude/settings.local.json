@@ -8,7 +8,15 @@
       "PowerShell(cmd /c rmdir \"c:\\\\Users\\\\Ashley\\\\OneDrive\\\\Desktop\\\\WBC Website\\\\.next\")",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\KIIT0001\\\\Downloads\\\\WBC Website\\\\WBC Website\" -Recurse -Directory)",
       "Bash(Select-Object FullName)",
-      "Bash(Sort-Object FullName)"
+      "Bash(Sort-Object FullName)",
+      "Bash(node -e ' *)",
+      "Read(//c/tmp/**)",
+      "Bash(cat /tmp/build-map.js)",
+      "Read(//tmp/**)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(grep -rno \"\\\\\\(min-\\\\\\)\\\\?w-\\\\[[0-9]\\\\{3,\\\\}px\\\\]\" app components --include=\"*.tsx\")"
     ]
   }
 }

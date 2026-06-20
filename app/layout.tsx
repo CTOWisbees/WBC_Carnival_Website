@@ -24,7 +24,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <SiteContentProvider initial={content}>
-          <CountdownBanner ctaHref="#" />
+          <CountdownBanner ctaHref="https://forms.office.com/Pages/ResponsePage.aspx?id=-9pCn9Lae0ahvLMs4X5cBmXGZ0APs9lFoHMR9wWOgelUMVZXUTRET0dUMUM3UTc0NDRJT0dONUFWQi4u" />
           {children}
         </SiteContentProvider>
       </body>

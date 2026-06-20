@@ -36,6 +36,10 @@ class SiteConfigAdmin(admin.ModelAdmin):
             "description": "Set the event city and the date & time the top countdown banner "
                            "counts down to. Change them any time; clear to use the site defaults.",
         }),
+        ("Contact Details", {
+            "fields": ("contact_address", "contact_mobile", "contact_whatsapp", "contact_email"),
+            "description": "Shown on the Contact Us page. Leave a field blank to hide it.",
+        }),
     )
 
     @admin.display(description="Logo")

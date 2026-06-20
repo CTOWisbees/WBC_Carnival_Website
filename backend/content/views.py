@@ -31,6 +31,13 @@ def content_api(request):
         "countdownLocation": (config.countdown_location if config else "") or "",
     }
 
+    contact = {
+        "address": (config.contact_address if config else "") or "",
+        "mobile": (config.contact_mobile if config else "") or "",
+        "whatsapp": (config.contact_whatsapp if config else "") or "",
+        "email": (config.contact_email if config else "") or "",
+    }
+
     partners = [
         {
             "name": p.name,
@@ -80,6 +87,7 @@ def content_api(request):
     return JsonResponse(
         {
             "site": site,
+            "contact": contact,
             "partners": partners,
             "gallery": gallery,
             "sponsorshipTiers": sponsorship_tiers,

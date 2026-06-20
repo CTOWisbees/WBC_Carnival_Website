@@ -162,6 +162,18 @@ class Command(BaseCommand):
             config.hero_title = "Wisbees Business Carnival"
             changed = True
         # hero_subtitle is intentionally left blank to keep the styled default in the UI.
+        if not config.contact_email:
+            config.contact_email = "info@wisbees.com"
+            changed = True
+        if not config.contact_mobile:
+            config.contact_mobile = "+91 98765 43210"
+            changed = True
+        if not config.contact_whatsapp:
+            config.contact_whatsapp = "+91 98765 43210"
+            changed = True
+        if not config.contact_address:
+            config.contact_address = "Pune, Maharashtra, India"
+            changed = True
         config.save()
         self.stdout.write("Site configuration " + ("updated." if changed else "already set."))
 

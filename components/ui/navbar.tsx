@@ -33,7 +33,7 @@ const wisbeesProducts = [
     href: 'https://www.wisbees.com/',
   },
   {
-    name: 'Wisbees Wealth',
+    name: 'Wisbees Wealth (Coming Soon)',
     tagline: 'Mutual fund investment platform',
     href: '#',
   },
@@ -77,13 +77,13 @@ export default function Navbar() {
               alt="Wisbees Business Carnival"
               width={220}
               height={72}
-              className="h-16 w-auto object-contain drop-shadow-xl"
+              className="h-12 sm:h-16 w-auto object-contain drop-shadow-xl"
               priority
             />
           </Link>
 
         {/* Main bar */}
-        <div className="flex items-center justify-between h-14 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl pl-56 pr-5 shadow-lg shadow-black/40">
+        <div className="flex items-center justify-between h-14 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl pl-44 sm:pl-56 pr-4 sm:pr-5 shadow-lg shadow-black/40">
 
           {/* Desktop links — visible ≥900px */}
           <ul className="hidden min-[900px]:flex items-center">
@@ -143,7 +143,9 @@ export default function Navbar() {
           <div className="flex items-center gap-2 ml-auto">
             {/* Register Now — desktop */}
             <Link
-              href="#"
+              href="https://forms.office.com/Pages/ResponsePage.aspx?id=-9pCn9Lae0ahvLMs4X5cBmXGZ0APs9lFoHMR9wWOgelUMVZXUTRET0dUMUM3UTc0NDRJT0dONUFWQi4u"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden min-[900px]:inline-flex text-sm font-semibold text-black bg-white hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-all duration-200"
             >
               Register Now
@@ -300,7 +302,9 @@ export default function Navbar() {
             {/* Register Now — mobile */}
             <div className="mt-4 pt-4 border-t border-white/10">
               <Link
-                href="#"
+                href="https://forms.office.com/Pages/ResponsePage.aspx?id=-9pCn9Lae0ahvLMs4X5cBmXGZ0APs9lFoHMR9wWOgelUMVZXUTRET0dUMUM3UTc0NDRJT0dONUFWQi4u"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-center text-sm font-semibold text-black bg-white hover:bg-gray-100 border border-gray-200 px-4 py-3 rounded-lg transition"
                 onClick={() => setMobileOpen(false)}
               >

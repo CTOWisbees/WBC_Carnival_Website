@@ -111,7 +111,7 @@ export default function IndiaOpportunityMap() {
               {/* Floating overlay */}
               {active && (
                 <div
-                  className="pointer-events-none absolute z-10 w-52 rounded-xl border border-zinc-800 bg-zinc-950 p-3 shadow-2xl"
+                  className="pointer-events-none absolute z-10 w-36 sm:w-52 rounded-xl border border-zinc-800 bg-zinc-950 p-2.5 sm:p-3 shadow-2xl"
                   style={
                     following
                       ? {
@@ -121,35 +121,35 @@ export default function IndiaOpportunityMap() {
                       : { left: '50%', bottom: 12, transform: 'translateX(-50%)' }
                   }
                 >
-                  <p className="text-sm font-bold text-white">{active}</p>
+                  <p className="text-xs sm:text-sm font-bold text-white">{active}</p>
                   {hasData ? (
-                    <div className="mt-2 space-y-1.5">
+                    <div className="mt-1.5 sm:mt-2 space-y-1 sm:space-y-1.5">
                       {stat?.avgAge !== undefined && (
-                        <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center justify-between text-[11px] sm:text-xs">
                           <span className="text-zinc-400">Average Age</span>
                           <span className="font-semibold text-white">{stat.avgAge} yrs</span>
                         </div>
                       )}
                       {stat?.finLit !== undefined && (
-                        <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center justify-between text-[11px] sm:text-xs">
                           <span className="text-zinc-400">Financial Literacy</span>
                           <span className="font-semibold text-white">{stat.finLit}%</span>
                         </div>
                       )}
                       {stat?.startups !== undefined && (
-                        <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center justify-between text-[11px] sm:text-xs">
                           <span className="text-zinc-400">Startups</span>
                           <span className="font-semibold text-white">{stat.startups.toLocaleString('en-IN')}</span>
                         </div>
                       )}
                       {stat?.urbanUnemp !== undefined && (
-                        <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center justify-between text-[11px] sm:text-xs">
                           <span className="text-zinc-400">Urban Unemployment</span>
                           <span className="font-semibold text-white">{stat.urbanUnemp}%</span>
                         </div>
                       )}
                       {stat?.ruralUnemp !== undefined && (
-                        <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center justify-between text-[11px] sm:text-xs">
                           <span className="text-zinc-400">Rural Unemployment</span>
                           <span className="font-semibold text-white">{stat.ruralUnemp}%</span>
                         </div>

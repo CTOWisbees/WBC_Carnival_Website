@@ -209,31 +209,21 @@ export default function SponsorsPage() {
                   ))}
                 </ul>
 
-                {/* CTA */}
-                <div className="px-6 pb-6 pt-2">
-                  <a
-                    href="#"
-                    className="group w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all duration-200"
-                    style={{
-                      background: tier.accentMuted,
-                      border: `1px solid ${tier.accentBorder}`,
-                      color: tier.accent,
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.background = tier.accent;
-                      (e.currentTarget as HTMLAnchorElement).style.color = '#09090b';
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.background = tier.accentMuted;
-                      (e.currentTarget as HTMLAnchorElement).style.color = tier.accent;
-                    }}
-                  >
-                    Get {tier.name} Sponsorship
-                    <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-                  </a>
-                </div>
               </div>
             ))}
+          </div>
+
+          {/* Single sponsorship CTA */}
+          <div className="mt-12 flex justify-center">
+            <a
+              href="https://forms.office.com/Pages/ResponsePage.aspx?id=-9pCn9Lae0ahvLMs4X5cBmXGZ0APs9lFoHMR9wWOgelUNFo3MzROWUZNQUJUMUk1M1FQV1FIQkIyRy4u"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-2 bg-white text-zinc-950 font-bold text-sm sm:text-base px-8 py-4 rounded-xl hover:bg-zinc-100 transition-all duration-200"
+            >
+              Get Sponsorship
+              <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+            </a>
           </div>
 
           {/* Bottom CTA */}
@@ -247,7 +237,7 @@ export default function SponsorsPage() {
               </p>
             </div>
             <a
-              href="#"
+              href="/contact"
               className="shrink-0 inline-flex items-center gap-2 bg-white text-zinc-950 font-bold text-sm px-7 py-3.5 rounded-xl hover:bg-zinc-100 transition-all duration-200 whitespace-nowrap"
             >
               Contact Us <span aria-hidden>→</span>
