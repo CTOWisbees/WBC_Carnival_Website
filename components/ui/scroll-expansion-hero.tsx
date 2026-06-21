@@ -157,9 +157,6 @@ const ScrollExpandMedia = ({
               {title}
             </h2>
             {date && <div className='font-medium drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]'>{date}</div>}
-            {scrollToExpand && (
-              <p className='text-white/70 text-sm mt-2 drop-shadow'>{scrollToExpand}</p>
-            )}
           </div>
         </section>
 
