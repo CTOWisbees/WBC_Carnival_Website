@@ -100,7 +100,7 @@ const ScrollExpandMedia = ({
 
   // ── Mobile: static hero, no scroll-driven resize (perf) ────────────────────
   if (isMobile) {
-    const mediaEl =
+    const mediaBg =
       mediaType === 'video' ? (
         mediaSrc.includes('youtube.com') ? (
           <iframe
@@ -112,7 +112,7 @@ const ScrollExpandMedia = ({
                   '?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playlist=' +
                   mediaSrc.split('v=')[1]
             }
-            className='w-full h-full rounded-2xl border-0'
+            className='w-full h-full border-0 object-cover'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
           />
@@ -125,7 +125,7 @@ const ScrollExpandMedia = ({
             loop
             playsInline
             preload='auto'
-            className='w-full h-full object-cover rounded-2xl'
+            className='w-full h-full object-cover'
             controls={false}
             disablePictureInPicture
             disableRemotePlayback
@@ -137,40 +137,29 @@ const ScrollExpandMedia = ({
           alt={title || 'Media content'}
           width={1280}
           height={720}
-          className='w-full h-full object-cover rounded-2xl'
+          className='w-full h-full object-cover'
         />
       );
 
     return (
       <div className='overflow-x-clip'>
-        <section className='relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden px-4 py-16'>
-          {/* Background */}
-          <div className='absolute inset-0 z-0'>
-            {bgComponent ? (
-              <div className='w-full h-full'>{bgComponent}</div>
-            ) : bgImageSrc ? (
-              <>
-                <Image
-                  src={bgImageSrc}
-                  alt='Background'
-                  width={1920}
-                  height={1080}
-                  className='w-full h-full object-cover'
-                  priority
-                />
-                <div className='absolute inset-0 bg-black/20' />
-              </>
-            ) : null}
+        <section className='relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden px-5 py-16'>
+          {/* Full-bleed media background */}
+          <div className='absolute inset-0 z-0 pointer-events-none'>
+            {mediaBg}
+            {/* Dark gradient so text stays readable over the video */}
+            <div className='absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60' />
           </div>
 
-          <div className='relative z-10 flex flex-col items-center text-center gap-5 w-full max-w-md'>
-            <h2 className='text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]'>
+          {/* Text over the video */}
+          <div className='relative z-10 flex flex-col items-center text-center gap-4 w-full max-w-md'>
+            <h2 className='text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]'>
               {title}
             </h2>
-            {date && <div className='text-base font-medium text-white drop-shadow'>{date}</div>}
-            <div className='w-full aspect-video rounded-2xl overflow-hidden shadow-xl pointer-events-none'>
-              {mediaEl}
-            </div>
+            {date && <div className='font-medium drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]'>{date}</div>}
+            {scrollToExpand && (
+              <p className='text-white/70 text-sm mt-2 drop-shadow'>{scrollToExpand}</p>
+            )}
           </div>
         </section>
 
