@@ -47,7 +47,11 @@ const ScrollExpandMedia = ({
   const rafRef = useRef<number | null>(null);
 
   // ── Drive progress from native scroll position (no scroll hijack) ──────────
+  // Skipped on mobile — the per-frame width/height resize + re-render is the
+  // main source of mobile jank, so mobile renders a static hero instead.
   useEffect(() => {
+    if (isMobile) return;
+
     const update = () => {
       rafRef.current = null;
       const el = wrapRef.current;
@@ -70,7 +74,7 @@ const ScrollExpandMedia = ({
       window.removeEventListener('resize', onScroll);
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [isMobile]);
 
   // ── Mobile / tablet detection ─────────────────────────────────────────────
   useEffect(() => {
@@ -93,6 +97,89 @@ const ScrollExpandMedia = ({
 
   const firstWord   = title ? title.split(' ')[0] : '';
   const restOfTitle = title ? title.split(' ').slice(1).join(' ') : '';
+
+  // ── Mobile: static hero, no scroll-driven resize (perf) ────────────────────
+  if (isMobile) {
+    const mediaEl =
+      mediaType === 'video' ? (
+        mediaSrc.includes('youtube.com') ? (
+          <iframe
+            src={
+              mediaSrc.includes('embed')
+                ? mediaSrc + (mediaSrc.includes('?') ? '&' : '?') +
+                  'autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1'
+                : mediaSrc.replace('watch?v=', 'embed/') +
+                  '?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playlist=' +
+                  mediaSrc.split('v=')[1]
+            }
+            className='w-full h-full rounded-2xl border-0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+          />
+        ) : (
+          <video
+            src={mediaSrc}
+            poster={posterSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload='auto'
+            className='w-full h-full object-cover rounded-2xl'
+            controls={false}
+            disablePictureInPicture
+            disableRemotePlayback
+          />
+        )
+      ) : (
+        <Image
+          src={mediaSrc}
+          alt={title || 'Media content'}
+          width={1280}
+          height={720}
+          className='w-full h-full object-cover rounded-2xl'
+        />
+      );
+
+    return (
+      <div className='overflow-x-clip'>
+        <section className='relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden px-4 py-16'>
+          {/* Background */}
+          <div className='absolute inset-0 z-0'>
+            {bgComponent ? (
+              <div className='w-full h-full'>{bgComponent}</div>
+            ) : bgImageSrc ? (
+              <>
+                <Image
+                  src={bgImageSrc}
+                  alt='Background'
+                  width={1920}
+                  height={1080}
+                  className='w-full h-full object-cover'
+                  priority
+                />
+                <div className='absolute inset-0 bg-black/20' />
+              </>
+            ) : null}
+          </div>
+
+          <div className='relative z-10 flex flex-col items-center text-center gap-5 w-full max-w-md'>
+            <h2 className='text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]'>
+              {title}
+            </h2>
+            {date && <div className='text-base font-medium text-white drop-shadow'>{date}</div>}
+            <div className='w-full aspect-video rounded-2xl overflow-hidden shadow-xl pointer-events-none'>
+              {mediaEl}
+            </div>
+          </div>
+        </section>
+
+        {children && (
+          <section className='flex flex-col w-full px-4 py-8'>{children}</section>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className='overflow-x-clip'>
