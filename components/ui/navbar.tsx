@@ -33,7 +33,8 @@ const wisbeesProducts = [
     href: 'https://www.wisbees.com/',
   },
   {
-    name: 'Wisbees Wealth (Coming Soon)',
+    name: 'Wisbees Wealth',
+    note: '(Coming Soon)',
     tagline: 'Mutual fund investment platform',
     href: '#',
   },
@@ -190,6 +191,7 @@ export default function Navbar() {
                     >
                       <span className="text-sm font-semibold text-white">{p.name}</span>
                       <span className="text-xs text-white/50">{p.tagline}</span>
+                      {p.note && <span className="text-xs text-white/50">{p.note}</span>}
                     </Link>
                   ))}
                 </div>
@@ -291,6 +293,7 @@ export default function Navbar() {
                         >
                           <span className="text-sm text-white/80 hover:text-white font-medium">{p.name}</span>
                           <span className="text-xs text-white/40">{p.tagline}</span>
+                          {p.note && <span className="text-xs text-white/40">{p.note}</span>}
                         </Link>
                       </li>
                     ))}

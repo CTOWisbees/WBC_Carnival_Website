@@ -4,7 +4,7 @@ import { Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
 
 const navLinks = [
   { label: 'About Us', href: '/about' },
-  { label: 'Contact Us', href: '#' },
+  { label: 'Contact Us', href: '/contact' },
   { label: 'Partner With Us', href: '/sponsors' },
   { label: 'Wisbees Responsibility', href: '/pro-bono' },
 ];

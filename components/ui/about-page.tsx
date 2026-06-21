@@ -84,10 +84,6 @@ export default function AboutPage() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-4">
-            Who We Are
-          </p>
-
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-zinc-900 leading-none mb-6">
             About <span className="border-b-4 border-zinc-900">Wisbees</span>
           </h1>
@@ -101,10 +97,6 @@ export default function AboutPage() {
       {/* What is WBC */}
       <section className="bg-white py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
-            Our Story
-          </p>
-
           <h2 className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900 mb-6">
             About WisBees &amp; WBC
           </h2>
@@ -134,9 +126,6 @@ export default function AboutPage() {
       {/* Values */}
       <section className="bg-zinc-950">
         <div className="text-center pt-16 pb-2 px-4">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
-            What We Offer
-          </p>
           <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white">
             Our Services
           </h2>

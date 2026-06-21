@@ -45,9 +45,6 @@ export default function TestimonialsPage() {
           <HomeBackground className="w-full h-full" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
-            Testimonials
-          </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-900 leading-none mb-4">
             What They Say
           </h1>
@@ -61,9 +58,6 @@ export default function TestimonialsPage() {
       <section className="bg-zinc-950 py-14 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
-              Student Stories
-            </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white">
               Hear from Our Students
             </h2>
@@ -94,9 +88,6 @@ export default function TestimonialsPage() {
       {/* What Parents Say */}
       <section className="bg-zinc-50 py-14 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-400 mb-3">
-            Community Voices
-          </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-zinc-900">
             Heard from Parents &amp; Schools
           </h2>

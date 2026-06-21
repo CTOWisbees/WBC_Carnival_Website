@@ -1,17 +1,31 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/ui/navbar';
 import ScrollExpandMedia from '@/components/ui/scroll-expansion-hero';
 import { ShimmerText } from '@/components/ui/shimmer-text';
-import { Testimonials } from '@/components/ui/testimonials-columns-1';
-import { AnimatedDock } from '@/components/ui/animated-dock';
-import FooterNewsletter from '@/components/ui/footer-column';
-import { LogoCloud } from '@/components/ui/logo-cloud-3';
-import IndiaOpportunityMap from '@/components/ui/india-opportunity-map';
 import { InfiniteSlider } from '@/components/ui/infinite-slider';
 import { Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import { useSiteContent } from '@/components/site-content-provider';
+
+// Below-fold components — code-split into separate chunks (ssr kept on, so
+// server still renders initial HTML → no layout shift, no visual change).
+const LogoCloud = dynamic(() =>
+  import('@/components/ui/logo-cloud-3').then((m) => m.LogoCloud),
+);
+const IndiaOpportunityMap = dynamic(
+  () => import('@/components/ui/india-opportunity-map'),
+);
+const Testimonials = dynamic(() =>
+  import('@/components/ui/testimonials-columns-1').then((m) => m.Testimonials),
+);
+const AnimatedDock = dynamic(() =>
+  import('@/components/ui/animated-dock').then((m) => m.AnimatedDock),
+);
+const FooterNewsletter = dynamic(
+  () => import('@/components/ui/footer-column'),
+);
 
 const clientLogos = [
   { src: "/Ryan_International_Group_logo.png", alt: "Ryan International School" },

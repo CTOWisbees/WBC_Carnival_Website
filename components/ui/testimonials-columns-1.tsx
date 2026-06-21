@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { motion, useAnimation } from "motion/react";
+import React, { useState } from "react";
+import { motion } from "motion/react";
 import { useSiteContent } from "@/components/site-content-provider";
 
 interface Testimonial {
@@ -15,44 +15,33 @@ export const TestimonialsColumn = (props: {
   testimonials: Testimonial[];
   duration?: number;
   isPaused?: boolean;
-  onCardEnter?: () => void;
-  onCardLeave?: () => void;
+  onPause?: () => void;
+  onResume?: () => void;
 }) => {
-  const controls = useAnimation();
   const duration = props.duration || 10;
 
-  useEffect(() => {
-    controls.start({
-      translateY: "-50%",
-      transition: { duration, repeat: Infinity, ease: "linear", repeatType: "loop" },
-    });
-  }, []);
-
-  useEffect(() => {
-    if (props.isPaused) {
-      controls.stop();
-    } else {
-      controls.start({
-        translateY: "-50%",
-        transition: { duration, repeat: Infinity, ease: "linear", repeatType: "loop" },
-      });
-    }
-  }, [props.isPaused]);
-
   return (
-    <div className={props.className}>
-      <motion.div
-        animate={controls}
-        className="flex flex-col gap-6 pb-6 bg-background"
+    <div
+      className={props.className}
+      onMouseEnter={props.onPause}
+      onMouseLeave={props.onResume}
+    >
+      <style>{`
+        @keyframes wbcScrollY { from { transform: translate3d(0,0,0); } to { transform: translate3d(0,-50%,0); } }
+      `}</style>
+      <div
+        className="flex flex-col gap-6 pb-6 bg-background will-change-transform"
+        style={{
+          animation: `wbcScrollY ${duration}s linear infinite`,
+          animationPlayState: props.isPaused ? "paused" : "running",
+        }}
       >
         {[...new Array(2).fill(0).map((_, index) => (
           <React.Fragment key={index}>
             {props.testimonials.map(({ text, image, name, role }, i) => (
               <div
-                className="p-6 md:p-10 rounded-3xl border shadow-lg shadow-primary/10 max-w-[280px] md:max-w-xs w-full"
+                className="p-6 md:p-10 rounded-3xl border ring-1 ring-primary/10 shadow-md shadow-primary/10 max-w-[280px] md:max-w-xs w-full"
                 key={i}
-                onMouseEnter={props.onCardEnter}
-                onMouseLeave={props.onCardLeave}
               >
                 <div>{text}</div>
                 <div className="flex items-center gap-2 mt-5">
@@ -76,7 +65,7 @@ export const TestimonialsColumn = (props: {
             ))}
           </React.Fragment>
         ))]}
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -170,30 +159,34 @@ export const Testimonials = () => {
           </h2>
         </motion.div>
 
-        <div className="flex justify-center gap-4 md:gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
+        <div className="relative max-h-[740px] overflow-hidden mt-10">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-32 z-10 bg-gradient-to-b from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 z-10 bg-gradient-to-t from-background to-transparent" />
+          <div className="flex justify-center gap-4 md:gap-6">
           <TestimonialsColumn
             testimonials={firstColumn}
             duration={15}
             isPaused={isPaused}
-            onCardEnter={() => setIsPaused(true)}
-            onCardLeave={() => setIsPaused(false)}
+            onPause={() => setIsPaused(true)}
+            onResume={() => setIsPaused(false)}
           />
           <TestimonialsColumn
             testimonials={secondColumn}
             className="hidden md:block"
             duration={19}
             isPaused={isPaused}
-            onCardEnter={() => setIsPaused(true)}
-            onCardLeave={() => setIsPaused(false)}
+            onPause={() => setIsPaused(true)}
+            onResume={() => setIsPaused(false)}
           />
           <TestimonialsColumn
             testimonials={thirdColumn}
             className="hidden lg:block"
             duration={17}
             isPaused={isPaused}
-            onCardEnter={() => setIsPaused(true)}
-            onCardLeave={() => setIsPaused(false)}
+            onPause={() => setIsPaused(true)}
+            onResume={() => setIsPaused(false)}
           />
+          </div>
         </div>
 
         <div className="mt-10 flex justify-center">

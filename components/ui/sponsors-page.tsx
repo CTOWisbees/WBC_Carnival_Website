@@ -119,9 +119,6 @@ export default function SponsorsPage() {
           <HomeBackground className="w-full h-full" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <p className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-3">
-            Partner With Us
-          </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-900 leading-tight mb-4">
             Why Sponsor Us
           </h1>
