@@ -120,11 +120,11 @@ export default function Home() {
         title={heroTitle}
         date={
           heroSubtitle ? (
-            <ShimmerText className="text-base md:text-lg font-medium text-gray-900 whitespace-nowrap" duration={2.5} delay={1}>
+            <ShimmerText className="text-sm sm:text-base md:text-lg font-medium text-gray-900 text-center whitespace-normal md:whitespace-nowrap" duration={2.5} delay={1}>
               {heroSubtitle}
             </ShimmerText>
           ) : (
-            <ShimmerText className="text-base md:text-lg font-medium text-gray-900 whitespace-nowrap" duration={2.5} delay={1}>
+            <ShimmerText className="text-sm sm:text-base md:text-lg font-medium text-gray-900 text-center whitespace-normal md:whitespace-nowrap" duration={2.5} delay={1}>
               India&apos;s <strong>first</strong> experiential entrepreneurship &amp; financial literacy program for <strong>schools</strong>
             </ShimmerText>
           )
