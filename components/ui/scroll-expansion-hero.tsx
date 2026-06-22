@@ -25,6 +25,8 @@ interface ScrollExpandMediaProps {
 
 // How many px of native scrolling fully expands the hero.
 const EXPAND_DISTANCE = 900;
+// Shorter throw on mobile — phones scroll less before the effect should finish.
+const EXPAND_DISTANCE_MOBILE = 650;
 
 const ScrollExpandMedia = ({
   mediaType = 'video',
@@ -45,6 +47,17 @@ const ScrollExpandMedia = ({
 
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
+
+  // Mobile imperative-animation refs — styles written straight to the DOM in
+  // rAF (no setState → no re-render) and only transforms/opacity are touched
+  // (compositor-only → no layout → smooth on phones).
+  const mBoxRef = useRef<HTMLDivElement | null>(null);
+  const mOverlayRef = useRef<HTMLDivElement | null>(null);
+  const mBgRef = useRef<HTMLDivElement | null>(null);
+  const mFirstRef = useRef<HTMLHeadingElement | null>(null);
+  const mRestRef = useRef<HTMLHeadingElement | null>(null);
+  const mDateRef = useRef<HTMLDivElement | null>(null);
+  const mChildRef = useRef<HTMLElement | null>(null);
 
   // ── Drive progress from native scroll position (no scroll hijack) ──────────
   // Skipped on mobile — the per-frame width/height resize + re-render is the
@@ -67,6 +80,54 @@ const ScrollExpandMedia = ({
     };
 
     update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [isMobile]);
+
+  // ── Mobile: same expand effect, driven imperatively (no re-render) ─────────
+  // Writes transform/opacity directly to refs each frame. Transforms are
+  // GPU-composited so there's no per-frame layout/paint → no jank.
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const apply = () => {
+      rafRef.current = null;
+      const el = wrapRef.current;
+      if (!el) return;
+      const scrolled = Math.min(Math.max(-el.getBoundingClientRect().top, 0), EXPAND_DISTANCE_MOBILE);
+      const p = scrolled / EXPAND_DISTANCE_MOBILE;
+
+      // Video card scales 0.62 → 1 (full-bleed) using transform only.
+      if (mBoxRef.current) mBoxRef.current.style.transform = `scale(${0.62 + p * 0.38})`;
+      // Dark overlay + bg fade out as the card takes over.
+      if (mOverlayRef.current) mOverlayRef.current.style.opacity = `${0.45 * (1 - p)}`;
+      if (mBgRef.current) mBgRef.current.style.opacity = `${1 - p}`;
+      // Title words slide apart + fade.
+      const tx = p * 55;
+      if (mFirstRef.current) {
+        mFirstRef.current.style.transform = `translateX(-${tx}vw)`;
+        mFirstRef.current.style.opacity = `${1 - p}`;
+      }
+      if (mRestRef.current) {
+        mRestRef.current.style.transform = `translateX(${tx}vw)`;
+        mRestRef.current.style.opacity = `${1 - p}`;
+      }
+      if (mDateRef.current) mDateRef.current.style.opacity = `${1 - p}`;
+      // Reveal the content section once fully expanded.
+      if (mChildRef.current) mChildRef.current.style.opacity = p >= 1 ? '1' : '0';
+    };
+
+    const onScroll = () => {
+      if (rafRef.current !== null) return;
+      rafRef.current = requestAnimationFrame(apply);
+    };
+
+    apply();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     return () => {
@@ -143,25 +204,82 @@ const ScrollExpandMedia = ({
 
     return (
       <div className='overflow-x-clip'>
-        <section className='relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden px-5 py-16'>
-          {/* Full-bleed media background */}
-          <div className='absolute inset-0 z-0 pointer-events-none'>
-            {mediaBg}
-            {/* Dark gradient so text stays readable over the video */}
-            <div className='absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60' />
-          </div>
+        {/* Tall spacer drives the scroll throw; sticky inner pins the hero. */}
+        <div ref={wrapRef} style={{ height: `calc(100dvh + ${EXPAND_DISTANCE_MOBILE}px)` }} className='relative'>
+          <section className='sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center'>
 
-          {/* Text over the video */}
-          <div className='relative z-10 flex flex-col items-center text-center gap-4 w-full max-w-md'>
-            <h2 className='text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]'>
-              {title}
-            </h2>
-            {date && <div className='font-medium drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]'>{date}</div>}
-          </div>
-        </section>
+            {/* Background image, fades out as the card expands */}
+            {bgImageSrc && (
+              <div ref={mBgRef} className='absolute inset-0 z-0' style={{ willChange: 'opacity' }}>
+                <Image
+                  src={bgImageSrc}
+                  alt='Background'
+                  width={1280}
+                  height={720}
+                  className='w-full h-full object-cover'
+                  priority
+                />
+                <div className='absolute inset-0 bg-black/20' />
+              </div>
+            )}
 
+            {/* Video card — scales 0.62 → full-bleed via transform (composited) */}
+            <div
+              ref={mBoxRef}
+              className='absolute z-10 inset-0 overflow-hidden rounded-3xl'
+              style={{ transform: 'scale(0.62)', willChange: 'transform' }}
+            >
+              {mediaBg}
+              {/* Dark overlay keeps title legible early, fades with expansion */}
+              <div
+                ref={mOverlayRef}
+                className='absolute inset-0 bg-black/40'
+                style={{ opacity: 0.45, willChange: 'opacity' }}
+              />
+            </div>
+
+            {/* Title words over the card — slide apart + fade on scroll */}
+            <div className='relative z-20 flex flex-col items-center text-center gap-2 px-5 pointer-events-none'>
+              <h2
+                ref={mFirstRef}
+                className='text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]'
+                style={{ willChange: 'transform, opacity' }}
+              >
+                {firstWord}
+              </h2>
+              {restOfTitle && (
+                <h2
+                  ref={mRestRef}
+                  className='text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]'
+                  style={{ willChange: 'transform, opacity' }}
+                >
+                  {restOfTitle}
+                </h2>
+              )}
+            </div>
+
+            {/* Shimmering subtitle below the video card, with a gap */}
+            {date && (
+              <div
+                ref={mDateRef}
+                className='absolute z-20 top-[83%] left-1/2 -translate-x-1/2 w-full max-w-md px-6 text-center pointer-events-none'
+                style={{ willChange: 'opacity' }}
+              >
+                {date}
+              </div>
+            )}
+          </section>
+        </div>
+
+        {/* Content revealed after full expansion */}
         {children && (
-          <section className='flex flex-col w-full px-4 py-8'>{children}</section>
+          <section
+            ref={mChildRef}
+            className='flex flex-col w-full px-4 py-8 transition-opacity duration-500'
+            style={{ opacity: 0 }}
+          >
+            {children}
+          </section>
         )}
       </div>
     );
