@@ -63,6 +63,16 @@ export default function Navbar() {
   const content = useSiteContent();
   const logoSrc = content?.site.logo || '/logo.png';
 
+  // Admin-managed ecosystem products; fall back to the built-in defaults.
+  const products = content?.ecosystemProducts?.length
+    ? content.ecosystemProducts.map((p) => ({
+        name: p.name,
+        tagline: p.tagline,
+        note: p.note || undefined,
+        href: p.href,
+      }))
+    : wisbeesProducts;
+
   return (
     <nav
       className="fixed left-0 right-0 z-30 px-4 sm:px-6 lg:px-8 transition-[top] duration-300"
@@ -86,8 +96,8 @@ export default function Navbar() {
         {/* Main bar */}
         <div className="flex items-center justify-between h-14 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl pl-44 sm:pl-56 pr-4 sm:pr-5 shadow-lg shadow-black/40">
 
-          {/* Desktop links — visible ≥900px */}
-          <ul className="hidden min-[900px]:flex items-center">
+          {/* Desktop links — visible ≥1030px */}
+          <ul className="hidden min-[1030px]:flex items-center">
             {navLinks.map((link) =>
               link.dropdown ? (
                 <li
@@ -147,14 +157,14 @@ export default function Navbar() {
               href="https://forms.office.com/Pages/ResponsePage.aspx?id=-9pCn9Lae0ahvLMs4X5cBmXGZ0APs9lFoHMR9wWOgelUMVZXUTRET0dUMUM3UTc0NDRJT0dONUFWQi4u"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden min-[900px]:inline-flex text-sm font-semibold text-black bg-white hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-all duration-200"
+              className="hidden min-[1030px]:inline-flex text-sm font-semibold text-black bg-white hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-all duration-200"
             >
               Register Now
             </Link>
 
             {/* Products menu — desktop only */}
             <div
-              className="relative hidden min-[900px]:block"
+              className="relative hidden min-[1030px]:block"
               onMouseEnter={() => setProductsOpen(true)}
               onMouseLeave={() => setProductsOpen(false)}
             >
@@ -180,13 +190,13 @@ export default function Navbar() {
                       Wisbees Ecosystem
                     </p>
                   </div>
-                  {wisbeesProducts.map((p, i) => (
+                  {products.map((p, i) => (
                     <Link
                       key={p.name}
                       href={p.href}
                       {...(p.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                       className={`flex flex-col gap-0.5 px-4 py-3.5 hover:bg-white/10 transition-colors duration-150 ${
-                        i !== wisbeesProducts.length - 1 ? 'border-b border-white/[0.06]' : ''
+                        i !== products.length - 1 ? 'border-b border-white/[0.06]' : ''
                       }`}
                     >
                       <span className="text-sm font-semibold text-white">{p.name}</span>
@@ -198,9 +208,9 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Hamburger — mobile (<900px) */}
+            {/* Hamburger — mobile (<1030px) */}
             <button
-              className="min-[900px]:hidden text-white p-1"
+              className="min-[1030px]:hidden text-white p-1"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             >
@@ -210,9 +220,9 @@ export default function Navbar() {
         </div>
         </div>{/* end logo + bar row */}
 
-        {/* Mobile menu — visible <900px */}
+        {/* Mobile menu — visible <1030px */}
         <div
-          className={`min-[900px]:hidden mt-2 transition-all duration-300 overflow-hidden ${
+          className={`min-[1030px]:hidden mt-2 transition-all duration-300 overflow-hidden ${
             mobileOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
@@ -283,7 +293,7 @@ export default function Navbar() {
                   }`}
                 >
                   <ul className="ml-4 mt-1 space-y-0.5">
-                    {wisbeesProducts.map((p) => (
+                    {products.map((p) => (
                       <li key={p.name}>
                         <Link
                           href={p.href}

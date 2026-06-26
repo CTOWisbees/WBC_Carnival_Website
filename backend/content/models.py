@@ -188,6 +188,33 @@ class SponsorshipTierFeature(models.Model):
         return f"{self.tier.name}: {self.text[:60]}"
 
 
+class EcosystemProduct(models.Model):
+    """Products in the 'Wisbees Ecosystem' menu (navbar hamburger / mobile menu)."""
+
+    name = models.CharField(max_length=120, help_text="Product name, e.g. 'Buzz by Wisbees'.")
+    tagline = models.CharField(
+        max_length=200, blank=True,
+        help_text="One-line description shown under the product name.",
+    )
+    note = models.CharField(
+        max_length=80, blank=True,
+        help_text="Optional small note, e.g. '(Coming Soon)'.",
+    )
+    link = models.URLField(
+        blank=True,
+        help_text="URL opened when the product is clicked. Leave blank for '#'.",
+    )
+    order = models.PositiveIntegerField(default=0, help_text="Lower numbers appear first.")
+    is_active = models.BooleanField(default=True, help_text="Untick to hide without deleting.")
+
+    class Meta:
+        ordering = ["order", "id"]
+        verbose_name = "Ecosystem Product"
+
+    def __str__(self):
+        return self.name
+
+
 class Video(models.Model):
     """YouTube videos embedded across the site."""
 

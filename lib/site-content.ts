@@ -32,6 +32,13 @@ export interface GalleryItem {
   showOnHome: boolean;
 }
 
+export interface EcosystemProductItem {
+  name: string;
+  tagline: string;
+  note: string;
+  href: string;
+}
+
 export interface TestimonialEntry {
   quote: string;
   name: string;
@@ -58,6 +65,7 @@ export interface SiteContent {
   contact: ContactInfo;
   partners: PartnerLogoItem[];
   gallery: GalleryItem[];
+  ecosystemProducts: EcosystemProductItem[];
   sponsorshipTiers: SponsorshipTierEntry[];
   testimonials: {
     homeColumn: TestimonialEntry[];

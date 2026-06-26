@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-from .models import GalleryPhoto, PartnerLogo, SiteConfig, SponsorshipTier, Testimonial, Video
+from .models import EcosystemProduct, GalleryPhoto, PartnerLogo, SiteConfig, SponsorshipTier, Testimonial, Video
 
 
 def _resolve(request, file_field, url_value):
@@ -73,6 +73,16 @@ def content_api(request):
             for v in Video.objects.filter(is_active=True, category=category)
         ]
 
+    ecosystem_products = [
+        {
+            "name": p.name,
+            "tagline": p.tagline or "",
+            "note": p.note or "",
+            "href": p.link or "#",
+        }
+        for p in EcosystemProduct.objects.filter(is_active=True)
+    ]
+
     sponsorship_tiers = [
         {
             "name": t.name,
@@ -90,6 +100,7 @@ def content_api(request):
             "contact": contact,
             "partners": partners,
             "gallery": gallery,
+            "ecosystemProducts": ecosystem_products,
             "sponsorshipTiers": sponsorship_tiers,
             "testimonials": {
                 "homeColumn": testimonials_for("home_column"),

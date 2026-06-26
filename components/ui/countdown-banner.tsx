@@ -25,6 +25,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
 // Fallbacks used when the admin hasn't set these in the content backend.
 const DEFAULT_TARGET = '2026-06-15T23:59:59';
 const DEFAULT_LOCATION = 'Pune';
+// Shorter on phones, taller from sm up. Exposed as --fd-banner-height so the
+// layout can offset content by the real banner height at each breakpoint.
+const BANNER_HEIGHT_MOBILE = '2.25rem';
 const BANNER_HEIGHT = '3rem';
 
 export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string }) {
@@ -45,7 +48,10 @@ export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string })
   return (
     <>
       <style>{`
-        :root { --fd-banner-height: ${BANNER_HEIGHT}; }
+        :root { --fd-banner-height: ${BANNER_HEIGHT_MOBILE}; }
+        @media (min-width: 640px) {
+          :root { --fd-banner-height: ${BANNER_HEIGHT}; }
+        }
         @keyframes wbcBannerShift {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
@@ -62,9 +68,9 @@ export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string })
       `}</style>
 
       <div
-        className="sticky top-0 z-40 flex items-center justify-between px-3 sm:px-8 text-white text-sm font-medium select-none overflow-hidden"
+        className="sticky top-0 z-40 flex items-center justify-between px-2 sm:px-8 text-white text-sm font-medium select-none overflow-hidden"
         style={{
-          height: BANNER_HEIGHT,
+          height: 'var(--fd-banner-height)',
           background:
             'linear-gradient(90deg, #6b0e0e 0%, #2d1606 30%, #0e2d0e 60%, #2d1606 80%, #6b0e0e 100%)',
           backgroundSize: '200% 100%',
@@ -82,7 +88,7 @@ export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string })
         {/* Center — countdown */}
         <div className="flex items-center gap-1 sm:gap-2 absolute left-1/2 -translate-x-1/2">
           <span
-            className="text-[10px] sm:text-xs mr-1 sm:mr-2 whitespace-nowrap font-bold tracking-wide bg-clip-text text-transparent"
+            className="text-[9px] sm:text-xs mr-1 sm:mr-2 whitespace-nowrap font-bold tracking-wide bg-clip-text text-transparent"
             style={{
               backgroundImage:
                 'linear-gradient(90deg, #fff 0%, #fde047 50%, #fff 100%)',
@@ -110,9 +116,9 @@ export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string })
             return (
               <span
                 key={label}
-                className="flex flex-col items-center justify-center leading-none rounded-md bg-white/10 ring-1 ring-white/15 px-1.5 sm:px-2 py-0.5 min-w-[28px] sm:min-w-[34px]"
+                className="flex flex-col items-center justify-center leading-none rounded-md bg-white/10 ring-1 ring-white/15 px-1 sm:px-2 py-0.5 min-w-[22px] sm:min-w-[34px]"
               >
-                <span className="font-extrabold tabular-nums text-[12px] sm:text-sm text-white">
+                <span className="font-extrabold tabular-nums text-[10px] sm:text-sm text-white">
                   {value === null ? '--' : label === 'DAYS' ? value : pad(value)}
                 </span>
                 <span className="text-white/55 text-[7px] sm:text-[8px] tracking-widest">
@@ -128,8 +134,9 @@ export default function CountdownBanner({ ctaHref = '#' }: { ctaHref?: string })
           href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[10px] sm:text-xs font-bold text-zinc-900 bg-yellow-300 hover:bg-yellow-200 transition-colors whitespace-nowrap shrink-0 rounded-full px-3 py-1.5"
+          className="text-[10px] sm:text-xs font-bold whitespace-nowrap shrink-0 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors text-yellow-300 bg-transparent sm:text-zinc-900 sm:bg-yellow-300 sm:hover:bg-yellow-200"
         >
+          <span className="sm:hidden">Register </span>
           <span className="hidden sm:inline">Register Now </span>
           <span aria-hidden>→</span>
         </a>

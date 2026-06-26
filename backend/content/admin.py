@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import GalleryPhoto, PartnerLogo, SiteConfig, SponsorshipTier, SponsorshipTierFeature, Testimonial, Video
+from .models import EcosystemProduct, GalleryPhoto, PartnerLogo, SiteConfig, SponsorshipTier, SponsorshipTierFeature, Testimonial, Video
 
 admin.site.site_header = "Wisbees Business Carnival — Content"
 admin.site.site_title = "WBC Content Admin"
@@ -159,6 +159,14 @@ class SponsorshipTierAdmin(admin.ModelAdmin):
             '<code>{}</code></span>',
             obj.accent, obj.accent,
         )
+
+
+@admin.register(EcosystemProduct)
+class EcosystemProductAdmin(admin.ModelAdmin):
+    list_display = ("name", "tagline", "note", "link", "order", "is_active")
+    list_display_links = ("name",)
+    list_editable = ("order", "is_active")
+    search_fields = ("name", "tagline")
 
 
 @admin.register(Video)
