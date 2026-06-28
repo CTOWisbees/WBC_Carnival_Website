@@ -7,7 +7,7 @@ import { ChevronDown, Menu, X, AlignJustify } from 'lucide-react';
 import { useSiteContent } from '@/components/site-content-provider';
 
 const services = [
-  { label: 'Read', href: '#' },
+  { label: 'Read', href: 'https://www.wisbees.com/founders-stories/' },
   { label: 'Watch', href: '/founder-videos' },
 ];
 
@@ -134,6 +134,7 @@ export default function Navbar() {
                         <Link
                           key={s.label}
                           href={s.href}
+                          {...(s.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                           className={`block px-4 py-3 text-sm text-white/80 hover:text-white hover:bg-white/10 transition-colors duration-150 ${
                             i !== services.length - 1 ? 'border-b border-white/[0.06]' : ''
                           }`}
@@ -252,6 +253,7 @@ export default function Navbar() {
                           <li key={s.label}>
                             <Link
                               href={s.href}
+                              {...(s.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                               className="block px-4 py-2.5 text-sm text-white/60 hover:text-white rounded-lg hover:bg-white/10 transition"
                               onClick={() => setMobileOpen(false)}
                             >
