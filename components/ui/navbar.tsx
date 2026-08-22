@@ -7,7 +7,7 @@ import { ChevronDown, Menu, X, AlignJustify } from 'lucide-react';
 import { useSiteContent } from '@/components/site-content-provider';
 
 const services = [
-  { label: 'Read', href: 'https://www.wisbees.com/founders-stories/' },
+  { label: 'Read', href: 'https://www.wisbees.com/tag/founders-stories/' },
   { label: 'Watch', href: '/founder-videos' },
 ];
 
